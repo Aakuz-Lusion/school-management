@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 
 class AcademicController extends Controller
 {
-    // ---- Classes ----
     public function classes()
     {
         $classes = SchoolClass::withCount(['sections', 'students'])->orderBy('order')->get();
@@ -32,7 +31,6 @@ class AcademicController extends Controller
         return back()->with('status', 'Class deleted.');
     }
 
-    // ---- Sections ----
     public function storeSection(Request $request)
     {
         $data = $request->validate([
@@ -49,7 +47,7 @@ class AcademicController extends Controller
         return back()->with('status', 'Section deleted.');
     }
 
-    // ---- Subjects ----
+    // Subjects
     public function subjects()
     {
         $subjects = Subject::with('schoolClass')->latest()->get();
@@ -75,7 +73,6 @@ class AcademicController extends Controller
         return back()->with('status', 'Subject deleted.');
     }
 
-    // ---- Teacher <-> Subject <-> Section assignment ----
     public function assignments()
     {
         $assignments = TeacherSubjectSection::with(['teacher.user', 'subject', 'section.schoolClass'])->get();
