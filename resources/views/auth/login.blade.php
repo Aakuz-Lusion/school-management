@@ -26,12 +26,6 @@
             <button class="btn btn-primary w-100">Login</button>
         </form>
         <hr>
-        <small class="text-muted">
-            Demo accounts (after seeding):<br>
-            Admin: admin@school.test / password<br>
-            Teacher: teacher@school.test / password<br>
-            Student: student@school.test / password
-        </small>
     </div>
 </div>
 @endsection

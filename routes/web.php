@@ -25,11 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/password', [PasswordController::class, 'update'])->name('password.update');
 });
 
-// ---- ADMIN ----
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
 
-    // Users (teachers/students/admins)
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -39,7 +37,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::put('/users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-    // Academics
     Route::get('/classes', [AcademicController::class, 'classes'])->name('classes.index');
     Route::post('/classes', [AcademicController::class, 'storeClass'])->name('classes.store');
     Route::delete('/classes/{class}', [AcademicController::class, 'destroyClass'])->name('classes.destroy');
@@ -55,19 +52,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/assignments-map', [AcademicController::class, 'storeAssignment'])->name('assignments.store');
     Route::delete('/assignments-map/{assignment}', [AcademicController::class, 'destroyAssignment'])->name('assignments.destroy');
 
-    // Periods
     Route::get('/periods', [PeriodController::class, 'index'])->name('periods.index');
     Route::post('/periods', [PeriodController::class, 'store'])->name('periods.store');
     Route::delete('/periods/{period}', [PeriodController::class, 'destroy'])->name('periods.destroy');
 
-    // Timetable
     Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
     Route::post('/timetable/generate', [TimetableController::class, 'generate'])->name('timetable.generate');
     Route::post('/timetable/cell', [TimetableController::class, 'updateCell'])->name('timetable.update-cell');
     Route::delete('/timetable/cell/{timetable}', [TimetableController::class, 'destroyCell'])->name('timetable.destroy-cell');
 });
 
-// ---- TEACHER ----
 Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/dashboard', [TeacherDashboard::class, 'index'])->name('dashboard');
     Route::get('/timetable', [TeacherDashboard::class, 'timetable'])->name('timetable');
@@ -80,7 +74,6 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
     Route::delete('/assignments/{assignment}', [TeacherAssignmentController::class, 'destroy'])->name('assignments.destroy');
 });
 
-// ---- STUDENT ----
 Route::middleware(['auth', 'role:student'])->prefix('student')->name('student.')->group(function () {
     Route::get('/dashboard', [StudentDashboard::class, 'index'])->name('dashboard');
     Route::get('/timetable', [StudentDashboard::class, 'timetable'])->name('timetable');
