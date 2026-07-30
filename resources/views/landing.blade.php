@@ -799,7 +799,7 @@
 <section class="hero" id="home">
     <div class="wrap hero-grid">
         <div class="hero-content">
-            <span class="eyebrow">📚 School &amp; College Management</span>
+            <span class="eyebrow"> School &amp; College Management</span>
             <h1>Every period, <em>planned</em> — before the bell even rings.</h1>
             <p class="lede">One system for admins, teachers and students: build the class structure, auto-generate a clash-free weekly timetable, and run assignments end to end — post, submit, grade.</p>
             <div class="hero-ctas">
