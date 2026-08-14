@@ -68,8 +68,8 @@ Route::middleware(['auth', 'role:teacher'])->prefix('teacher')->name('teacher.')
     Route::get('/assignments', [TeacherAssignmentController::class, 'index'])->name('assignments.index');
     Route::get('/assignments/create', [TeacherAssignmentController::class, 'create'])->name('assignments.create');
     Route::post('/assignments', [TeacherAssignmentController::class, 'store'])->name('assignments.store');
-    Route::get('/assignment/{assignment}/submissions', [TeacherAssignmentController::class, 'submissions'])->name('assignments.submissions');
-    Route::put('/submission/{submission}/grade', [TeacherAssignmentController::class, 'grade'])->name('submissions.grade');
+    Route::get('/assignments/{assignment}/submissions', [TeacherAssignmentController::class, 'submissions'])->name('assignments.submissions');
+    Route::put('/submissions/{submission}/grade', [TeacherAssignmentController::class, 'grade'])->name('submissions.grade');
     Route::delete('/assignments/{assignment}', [TeacherAssignmentController::class, 'destroy'])->name('assignments.destroy');
 });
 
